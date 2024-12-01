@@ -1,0 +1,41 @@
+# Ignore output directories
+**/out/
+
+# Ignore build directories
+**/build/
+**/CMakeFiles/
+**/CMakeCache.txt
+**/Makefile
+**/cmake_install.cmake
+
+# Ignore binary files
+**/*.out
+**/*.exe
+**/*.o
+**/*.obj
+**/*.a
+**/*.so
+**/*.dll
+**/*.dylib
+
+# Ignore editor and IDE files
+**/.vscode/
+**/.idea/
+**/build/
+**/.DS_Store
+
+# Ignore temporary files
+**/*.log
+**/*.tmp
+**/*.swp
+**/*.swo
+
+# Ignore user-specific files
+**/*.user
+**/*.userosscache
+**/*.sln
+**/*.suo
+**/*.vcxproj
+**/*.vcxproj.filters
+
+ 
