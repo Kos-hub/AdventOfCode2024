@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <sstream>
 #include <string>
 
@@ -42,6 +43,52 @@ void PopulateLists(int* first, int* second) {
     std::cout << "File is closed" << std::endl;
 
 }
+
+void PartOne(int* first, int* second) {
+    if (first == nullptr || second == nullptr) {
+        return;
+    }
+
+    std::sort(first, first + 1000);
+    std::sort(second, second + 1000);
+
+    int answer = 0;
+    for (int i = 0; i < 1000; i++) {
+
+        int dist = std::abs(first[i] - second[i]);
+        answer += dist;
+    }
+    std::cout << "Answer is: " << answer << std::endl;
+}
+
+void PartTwo(int* first, int* second) {
+
+    std::map<int, int> first_freq;
+    std::map<int, int> second_freq;
+    
+    for (int i = 0; i < 1000; i++) {
+        int key = second[i];
+        if (second_freq.find(key) == second_freq.end()) {
+            second_freq[key] = 1;
+        } else {
+            second_freq[key]++;
+        }
+    }
+
+    int answer = 0;
+    for (int i = 0; i < 1000; i++) {
+        int current = first[i];
+        int freq = 0;
+        if (second_freq.find(current) != second_freq.end()) {
+            freq = second_freq[current];
+        }
+
+
+        answer += current * freq;
+    }
+
+    std::cout << "Answer is: " << answer << std::endl;
+}
 int main() {
 
     int* first_list = new int[1000];
@@ -49,20 +96,8 @@ int main() {
 
     PopulateLists(first_list, second_list);
 
-    std::sort(first_list, first_list + 1000);
-    std::sort(second_list, second_list + 1000);
-    
-    for(int i = 0; i < 1000; i++) {
-        std::cout << i << " First List: " << first_list[i] << ", Second List: " << second_list[i] << std::endl;
-    }
-
-    int answer = 0;
-    for (int i = 0; i < 1000; i++) {
-
-        int dist = std::abs(first_list[i] - second_list[i]);
-        answer += dist;
-    }
-    std::cout << "Answer is: " << answer << std::endl;
+    //PartOne(first_list, second_list);
+    PartTwo(first_list, second_list);
 
     delete[] first_list;
     delete[] second_list;
